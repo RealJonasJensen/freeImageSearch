@@ -1,6 +1,6 @@
 <template>
     <transition name="show">
-        <div v-if="show" >
+        <div class="modal-img" v-if="show" >
             <img :src="image.largeImageURL" :alt="image.largeImageURL">
         </div>
 </transition>
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style scoped>
-div {
+.modal-img {
   background-color: #fff;
   position: fixed;
   margin-left: auto;
@@ -33,7 +33,7 @@ div {
   overflow-y: auto;
 }
 
-div img {
+.modal-img img {
   height: 100%;
   width: 100%;
   display: block;
