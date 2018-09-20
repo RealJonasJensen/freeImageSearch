@@ -33,4 +33,9 @@ body {
 .content {
   padding-top: 75px;
 }
+@media screen and (max-width: 800px) {
+  .content {
+    padding-top: 0;
+  }
+}
 </style>

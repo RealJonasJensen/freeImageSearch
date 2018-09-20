@@ -1,8 +1,11 @@
 <template>
     <div>
-        <div>
-            <p>
-                Search 
+        <div class="dashboard-text" >
+            <p v-if="!searched"  >
+                Search anything!
+            </p>
+            <p v-else-if="searched && images.length === 0" >
+                There was 0 results with that search.
             </p>
         </div>
         <app-backdrop :show="show" :toggle="toggleBackdrop" ></app-backdrop>
@@ -44,6 +47,9 @@ export default {
     },
     loading() {
       return this.$store.getters.loading;
+    },
+    searched() {
+      return this.$store.getters.searched;
     }
   },
   components: {
@@ -59,5 +65,22 @@ export default {
 .dashboard-img {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
+}
+
+.dashboard-text p {
+  font-size: 2em;
+  text-align: center;
+  margin: 100px 0 100px 0;
+}
+
+@media screen and (max-width: 800px) {
+  .dashboard-img {
+    grid-template-columns: 50% 50%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .dashboard-img {
+    grid-template-columns: 100%;
+  }
 }
 </style>

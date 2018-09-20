@@ -7,11 +7,13 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        images: null,
+        images: [],
         image: null,
+        searched: false,
         error: null,
         loadingImage: false,
-        loadingImages: false
+        loadingImages: false,
+
     },
     mutations: {
         setLoading(state) {
@@ -27,11 +29,15 @@ export default new Vuex.Store({
         },
         setImage(state, payload) {
             state.image = payload;
+        },
+        setSearched(state) {
+            state.searched = true;
         }
     },
     actions: {
         fetchData({ dispatch, commit }, query) {
-            commit("setLoading")
+            commit("setLoading");
+            commit("setSearched");
             axios
                 .get(`https://pixabay.com/api/?key=10165331-82da6047d606e6bbe100888f3&q=${query}&image_type=photo`)
                 .then(res => {
@@ -65,6 +71,9 @@ export default new Vuex.Store({
         },
         loadingImage(state) {
             return state.loadingImage
+        },
+        searched(state) {
+            return state.searched;
         }
 
     }
